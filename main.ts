@@ -30,6 +30,11 @@ function main(): void {
   if (ENTRY.trim().length === 0) {
     throw new Error("entry is only white space");
   }
+  // One line, as the brief demands: a single line of dying speech
+  // carved in stone — no line breaks, no stage directions.
+  if (/[\r\n]/.test(ENTRY)) {
+    throw new Error("entry must be a single line");
+  }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
   // Written with no trailing newline: the file is exactly the epitaph,
